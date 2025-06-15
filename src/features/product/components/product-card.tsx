@@ -1,5 +1,5 @@
 import { useCartStore } from '@/store/cartStore';
-import { useAuthDataStore } from '@/store/useAuthStore';
+
 import { Product } from '@/types';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
@@ -18,7 +18,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const addToCart = useCartStore((state) => state.addItem);
   // const { toggleItem, isInWishlist } = useWishlistStore();
-  const { user } = useAuthDataStore();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -27,16 +26,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     toast.success('Added to cart!');
   };
 
-  const handleToggleWishlist = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!user.id) {
-      toast.error('Please login to add items to wishlist');
-      return;
-    }
-    // toggleItem(product);
-    // toast.success(isInWishlist(product.id) ? 'Removed from wishlist' : 'Added to wishlist!');
-  };
+  // const handleToggleWishlist = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   if (!user.id) {
+  //     toast.error('Please login to add items to wishlist');
+  //     return;
+  //   }
+  //   // toggleItem(product);
+  //   // toast.success(isInWishlist(product.id) ? 'Removed from wishlist' : 'Added to wishlist!');
+  // };
 
   // const inWishlist = isInWishlist(product.id);
   const discountPercentage = product.originalPrice
@@ -103,7 +102,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={handleToggleWishlist}
+              // onClick={handleToggleWishlist}
               // className={`absolute top-4 right-4 p-3 rounded-full backdrop-blur-sm transition-all duration-300 z-10 ${
               //   inWishlist
               //     ? 'bg-rose-500 text-white shadow-lg'
