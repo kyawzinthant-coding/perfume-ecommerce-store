@@ -1,25 +1,27 @@
 export interface Product {
   id: string;
   name: string;
-  brand: string;
-  category: string;
+  brand_name: string;
+  category_name: string;
   price: number;
+  size_ml: string;
+  created_at: string;
   originalPrice?: number;
   description: string;
-  image: string;
+  image_url: string;
   images?: string[];
+  gender_affinity: string;
+  review_count: number;
+  slug: string;
   inStock: boolean;
-  stockQuantity: number;
+  stock_quantity: number;
   rating: number;
   reviewCount: number;
-  scentNotes: {
-    top: string[];
-    heart: string[];
-    base: string[];
-  };
+
+  top_notes: string;
+  middle_notes: string;
+  base_notes: string;
   featured?: boolean;
-  new?: boolean;
-  onSale?: boolean;
 }
 
 export interface CartItem {
@@ -71,17 +73,15 @@ export interface Address {
 export interface Category {
   id: string;
   name: string;
-  slug: string;
-  description?: string;
-  image?: string;
+  is_active: number;
+  image_url?: string;
 }
 
 export interface Brand {
   id: string;
   name: string;
-  slug: string;
-  description?: string;
-  image?: string;
+  is_active: number;
+  image_url?: string;
 }
 
 export interface ChatMessage {
