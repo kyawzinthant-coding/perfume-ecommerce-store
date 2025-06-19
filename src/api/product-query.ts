@@ -11,6 +11,14 @@ export const fetchProductsListQuery = () => ({
 export const fetchProduct = async (id: string) =>
   (await api.get(`products/${id}`)).data;
 
+export const fetchReviews = async (id: string) =>
+  (await api.get(`products/${id}/reviews`)).data;
+
+export const fetchReviewsQuery = (id: string) => ({
+  queryKey: ['reviews', id],
+  queryFn: () => fetchReviews(id),
+});
+
 export const OneProductQuery = (id: string) => ({
   queryKey: ['product', id],
   queryFn: () => fetchProduct(id),

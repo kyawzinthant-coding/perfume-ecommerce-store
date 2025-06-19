@@ -90,3 +90,11 @@ export interface ChatMessage {
   isUser: boolean;
   timestamp: Date;
 }
+
+export interface Review {
+  id: string;
+  review_text: string;
+  rating: number;
+  user_name: string;
+  created_at: any;
+}

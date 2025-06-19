@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { ProductsFilters } from './components/products-filter';
 import { ProductsHero } from './components/product-hero';
-import { ProductsControls } from './components/product-controls';
+
 import { ProductGrid } from './components/products-grid';
 import { EmptyState } from './components/empty-state';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -13,6 +13,7 @@ import {
   fetchCategoryAndBrandQuery,
   fetchProductsListQuery,
 } from '@/api/product-query';
+import { ProductsControls } from './components/product-controls';
 
 export interface ProductsPageData {
   products: Product[];
@@ -49,7 +50,7 @@ const ProductPage = () => {
   console.log('product filter ', filteredAndSortedProducts);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <ProductsHero
         searchQuery={filters.searchQuery}
         onSearchChange={(query) => updateFilter('searchQuery', query)}
@@ -64,7 +65,7 @@ const ProductPage = () => {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           <ProductsFilters
             filters={filters}

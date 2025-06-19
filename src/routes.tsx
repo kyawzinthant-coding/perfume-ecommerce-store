@@ -4,11 +4,16 @@ import LoadingPage from './page/Loader';
 
 import LayoutWrapper from './components/LayoutWrapper';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { ProductLoader } from './router/loader/data-loader';
+import {
+  ProductDetailLoader,
+  ProductLoader,
+} from './router/loader/data-loader';
 
 const LandingPage = lazy(() => import('./page/LandingPage'));
 
 const ProductPage = lazy(() => import('./features/product'));
+
+const ProductDetailsPage = lazy(() => import('./features/product/details'));
 
 const withSuspense = (Component: React.ComponentType) => {
   return (
@@ -34,9 +39,21 @@ export const router = createBrowserRouter([
   },
   {
     path: '/products',
-    element: withSuspense(ProductPage),
-    errorElement: <ErrorBoundary />,
-    loader: ProductLoader,
+    children: [
+      {
+        path: '',
+        index: true,
+        element: withSuspense(ProductPage),
+        errorElement: <ErrorBoundary />,
+        loader: ProductLoader,
+      },
+      {
+        path: ':id',
+        element: withSuspense(ProductDetailsPage),
+        errorElement: <ErrorBoundary />,
+        loader: ProductDetailLoader,
+      },
+    ],
   },
   {
     path: '/login',

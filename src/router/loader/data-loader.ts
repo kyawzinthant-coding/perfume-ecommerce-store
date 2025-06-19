@@ -3,6 +3,7 @@ import { fetchSomethingQuery } from '@/api/query';
 import {
   fetchCategoryAndBrandQuery,
   fetchProductsListQuery,
+  fetchReviewsQuery,
   OneProductQuery,
 } from '@/api/product-query';
 import { LoaderFunctionArgs } from 'react-router';
@@ -19,11 +20,10 @@ export const ProductLoader = async () => {
 };
 
 export const ProductDetailLoader = async ({ params }: LoaderFunctionArgs) => {
-  console.log('param', params);
   if (!params.id) {
     throw new Error('Product id is required');
   }
-  await queryClient.ensureQueryData(fetchCategoryAndBrandQuery());
   await queryClient.ensureQueryData(OneProductQuery(params.id));
+  await queryClient.ensureQueryData(fetchReviewsQuery(params.id));
   return { productId: params.id };
 };

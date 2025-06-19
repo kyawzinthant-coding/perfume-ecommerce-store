@@ -34,8 +34,6 @@ export const ProductsFilters: React.FC<ProductsFiltersProps> = ({
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ x: -300, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
         className={`lg:w-80 ${showFilters ? 'block' : 'hidden lg:block'}`}
       >
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sticky top-24">
